@@ -1,0 +1,1 @@
+<input type="hidden" id="idPadre" value="{{$idPadre}}">
