@@ -70,15 +70,13 @@ class SesionController extends Controller
 
     {
 
-        $cadenaDesencriptada = Crypt::decryptString('$2y$13$0Hkcj1EUjyGUkyKwMYsm6OrdjZ/b28YnpXt4vzGQY0hWPDEpFFz8K');
-
         if (!$request->get('usuario')) {
 
             return response()->json(array(
 
                 'resultado' => 0,
 
-                'mensaje' => $cadenaDesencriptada,
+                'mensaje' => 'El usuario es requerido',
 
                 
 
@@ -136,12 +134,16 @@ class SesionController extends Controller
 
 
 
-                } else {
-
-
+                } elseif ($empresa->count() == 1) {
 
                     $idEmpresa = $empresa[0]->id;
 
+                } else {
+
+                    return response()->json(array(
+                        'resultado' => 0,
+                        'mensaje' => 'El usuario no tiene empresas activas o no existe.',
+                    ));
                 }
 
             }
@@ -150,7 +152,7 @@ class SesionController extends Controller
 
 
 
-            $usuario = Usuario::consultarPorUsuarioEmpresa($request->get('usuario'),$idEmpresa);
+            $usuario = Usuario::consultarPorUsuarioEmpresa($request->get('usuario'), $idEmpresa);
 
 
 
