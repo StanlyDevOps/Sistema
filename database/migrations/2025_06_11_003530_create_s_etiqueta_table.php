@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSModuloEmpresaTable extends Migration
+class CreateSEtiquetaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,18 @@ class CreateSModuloEmpresaTable extends Migration
      */
     public function up()
     {
-        Schema::create('s_modulo_empresa', function (Blueprint $table) {
+        Schema::create('s_etiqueta', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre', 100)->unique();
+            $table->string('clase', 50)->nullable();
+            $table->string('diminutivo', 20)->nullable();
+            $table->boolean('estado')->default(1);
             $table->timestamps();
         });
+
+        $clase = new s_etiqueta();
+        $clase->run();
+
     }
 
     /**
@@ -26,6 +34,6 @@ class CreateSModuloEmpresaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_modulo_empresa');
+        Schema::dropIfExists('s_etiqueta');
     }
 }
