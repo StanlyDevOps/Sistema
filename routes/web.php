@@ -25,7 +25,7 @@ Route::post('/ingresar/verificar','SesionController@VerificarUsuario');
 // Navegacion por las carpetas del administrador
 Route::get('/si/{carpeta}/{pagina}','NavegacionController@Privado');
 
-// Acciones de todos los modulos para consultar, crear, editar y eliminar 
+// Acciones de todos los modulos para consultar, crear, editar y eliminar
 Route::post('/{carpeta}/{pagina}/{crud}','FuncionesVariablesController@AsignarFuncion');
 
 // Navegacion de las carpetas de administrador parte principal
