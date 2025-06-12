@@ -6,3 +6,5 @@ storage/framework/sessions/
 vendor/composer/
 
 storage/logs/
+
+storage/framework/views/
