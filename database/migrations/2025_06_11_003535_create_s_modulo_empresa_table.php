@@ -17,6 +17,7 @@ class CreateSModuloEmpresaTable extends Migration
             $table->unsignedInteger('id_modulo');
             $table->unsignedInteger('id_empresa');
             $table->timestamps();
+
             $table->foreign('id_modulo')->references('id')->on('s_modulo');
             $table->foreign('id_empresa')->references('id')->on('s_empresa');
             $table->unique(['id_modulo', 'id_empresa']);
