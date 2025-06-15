@@ -1,41 +1,1 @@
-<?php
-
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
-
-class CreatePClienteTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('p_cliente', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('id_empresa')->unsigned();
-            $table->integer('id_tipo_identificacion')->unsigned();
-            $table->string('identificacion',15);
-            $table->string('nombres',60);
-            $table->string('apellidos',60);
-            $table->string('direccion',30);
-            $table->string('telefono',20)->nullable();
-            $table->string('celular',15);
-            $table->boolean('estado')->default(1);
-            $table->foreign('id_empresa')->references('id')->on('s_empresa');
-            $table->foreign('id_tipo_identificacion')->references('id')->on('s_tipo_identificacion');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('p_cliente');
-    }
-}
+<?phpuse Illuminate\Support\Facades\Schema;use Illuminate\Database\Schema\Blueprint;use Illuminate\Database\Migrations\Migration;class CreatePClienteTable extends Migration{    /**     * Run the migrations.     *     * @return void     */    public function up()    {        Schema::create('p_cliente', function (Blueprint $table) {            $table->increments('id');            $table->unsignedInteger('id_empresa');            $table->unsignedInteger('id_tipo_identificacion');            $table->unsignedInteger('id_estado_civil')->nullable();            $table->unsignedInteger('id_municipio')->nullable();            $table->unsignedInteger('id_municipio_empresa')->nullable();            $table->unsignedInteger('id_municipio_ref_personal')->nullable();            $table->unsignedInteger('id_municipio_ref_familiar')->nullable();            $table->unsignedInteger('id_banco_cliente')->nullable();            $table->unsignedInteger('id_ocupacion')->nullable();            $table->integer('codigo');            $table->string('identificacion',15);            $table->string('nombres',60);            $table->string('apellidos',60);            $table->string('telefono',20)->nullable();            $table->string('celular',15)->nullable();            $table->string('direccion', 100);            $table->date('fecha_nacimiento')->nullable();            $table->string('email_personal', 100)->nullable();            $table->string('barrio', 100)->nullable();            $table->string('empresa_nombre', 100)->nullable();            $table->string('empresa_cargo', 100)->nullable();            $table->string('empresa_area', 100)->nullable();            $table->string('empresa_barrio', 100)->nullable();            $table->string('empresa_direccion', 100)->nullable();            $table->string('empresa_telefono', 20)->nullable();            $table->date('empresa_fecha_ingreso')->nullable();            $table->integer('empresa_antiguedad_meses')->nullable();            $table->bigInteger('sueldo')->nullable();            $table->bigInteger('ingresos')->nullable();            $table->bigInteger('egresos')->nullable();            $table->string('no_cuenta', 20)->nullable();            $table->string('ref_personal_nombres', 60)->nullable();            $table->string('ref_personal_apellidos', 60)->nullable();            $table->string('ref_personal_barrio', 100)->nullable();            $table->string('ref_personal_telefono', 20)->nullable();            $table->string('ref_personal_celular', 20)->nullable();            $table->string('ref_familiar_nombres', 60)->nullable();            $table->string('ref_familiar_apellidos', 60)->nullable();            $table->string('ref_familiar_barrio', 100)->nullable();            $table->string('ref_familiar_telefono', 20)->nullable();            $table->string('ref_familiar_celular', 20)->nullable();            $table->string('observaciones', 4000);            $table->enum('estado', [-1, 0, 1]);            $table->foreign('id_empresa')->references('id')->on('s_empresa');            $table->foreign('id_tipo_identificacion')->references('id')->on('s_tipo_identificacion');            $table->foreign('id_estado_civil')->references('id')->on('p_estado_civil');            $table->foreign('id_municipio')->references('id')->on('s_municipio');            $table->foreign('id_municipio_empresa')->references('id')->on('s_municipio');            $table->foreign('id_municipio_ref_personal')->references('id')->on('s_municipio');            $table->foreign('id_municipio_ref_familiar')->references('id')->on('s_municipio');            $table->foreign('id_banco_cliente')->references('id')->on('s_banco');            $table->foreign('id_ocupacion')->references('id')->on('p_ocupacion');        });    }    /**     * Reverse the migrations.     *     * @return void     */    public function down()    {        Schema::dropIfExists('p_codeudor');        Schema::dropIfExists('p_cliente');    }}

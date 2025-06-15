@@ -28,7 +28,7 @@ class AlmPedidoDetalle extends Migration
 
             $table->foreign('id_pedido')->references('id')->on('alm_pedido');
             $table->foreign('id_producto_locacion')->references('id')->on('inv_producto_locacion');
-            $table->foreign('id_producto')->references('id')->on('inv_producto');
+            $table->foreign('id_producto')->references('id')->on('inv_producto')->onDelete('set null');
             //$table->foreign('id_paquete')->references('id')->on('inv_paquete');
         });
     }

@@ -23,7 +23,7 @@ class AlmPedido extends Migration
             $table->enum('estado', [-1, 0, 1]);
 
             $table->foreign('id_empresa')->references('id')->on('s_empresa');
-            $table->foreign('id_mesa')->references('id')->on('alm_mesa');
+            $table->foreign('id_mesa')->references('id')->on('alm_mesa')->onDelete('set null');
         });
     }
 
