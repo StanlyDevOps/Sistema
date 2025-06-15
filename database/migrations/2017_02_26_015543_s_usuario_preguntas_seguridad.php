@@ -33,6 +33,6 @@ class SUsuarioPreguntasSeguridad extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('s_usuario_preguntas_seguridad');
     }
 }
